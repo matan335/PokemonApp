@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+import service from './services/pokemon.service'
 
-console.log(123);
+service.query()
+  .then(pokemons => console.log(pokemons))
+  .catch(err => console.log(err))
 
 Vue.config.productionTip = false
 
