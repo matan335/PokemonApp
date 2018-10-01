@@ -16,7 +16,7 @@
                 <div class="sk-circle12 sk-child"></div>
             </div>
         </div>
-        <div v-else>
+        <div v-else-if="pokemon.name">
           <img :src="pokemon.sprites.front_default" />
           <div>{{pokemon.name}}</div>
         </div>
@@ -36,7 +36,7 @@ export default {
     //   "sprites:",
     //   this.pokemon.sprites.front_default
     // );
-  },
+  }
 };
 </script>
 

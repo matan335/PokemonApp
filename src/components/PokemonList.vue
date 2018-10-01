@@ -20,7 +20,7 @@ export default {
   created() {
     service.query().then(pokemons => {
       this.pokemons = pokemons;
-      setTimeout(() => this.loading = false, 1500);
+      setTimeout(() => (this.loading = false), 1500);
     });
   },
   components: {
@@ -33,5 +33,6 @@ export default {
 .pokemon-list {
   background-color: black;
   padding-top: 6px;
+  height: 100%;
 }
 </style>

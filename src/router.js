@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/team',
       name: 'Team',
-      component: Team
+      component: Team,
     },
   ]
 })

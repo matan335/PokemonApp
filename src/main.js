@@ -6,6 +6,8 @@ import './registerServiceWorker'
 
 
 Vue.config.productionTip = false
+// Vue.http.headers.common['Access-Control-Allow-Origin'] = 'https://pokeapi.co/api/v2/pokemon/'
+// Vue.http.headers.common['Access-Control-Request-Method'] = '*'
 
 new Vue({
   router,
