@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import appHeader from './Header';
 import appFooter from './Footer';
 import appBody from './Body';

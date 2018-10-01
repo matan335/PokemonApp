@@ -4,9 +4,9 @@ function query() {
             .then(data => data.json()
                 .then(resData => {
                     var pokemons = []
-                    resData.results.forEach((element, i) => {
-                        if (i < 35) {
-                            fetch(element.url)
+                    resData.results.forEach((pokemonData, i) => {
+                        if (i < 100) {
+                            fetch(pokemonData.url)
                                 .then(subData => subData.json()
                                     .then(pokemonData => pokemons.push(pokemonData)))
                         }

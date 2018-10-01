@@ -1,6 +1,6 @@
 <template>
     <body>
-        <pokemon-list></pokemon-list>
+        <router-view/>
     </body>
 </template>
 

@@ -1,12 +1,18 @@
 <template>
+<div class="header">
     <header>
         <img class="pokemon-logo" src="../assets/pokemon-logo.png" />
     </header>
+    <side-bar></side-bar>
+</div>
 </template>
 
 <script>
+import sideBar from '@/components/SideBar'
 export default {
-
+    components: {
+        sideBar
+    }
 }
 </script>
 
