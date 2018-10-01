@@ -15,7 +15,9 @@ export default {
 
 <style scoped>
 body {
-  min-height: calc(100vh - 35vh);
+  min-height: 65vh;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 </style>
