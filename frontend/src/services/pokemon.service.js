@@ -7,6 +7,7 @@ function createPokemonData(pokemons) {
     var copy = JSON.parse(JSON.stringify(pokemons))
     console.log('sending to back', copy)
     copy.forEach(pokemon => {
+        //todo fix payload too large
         axios.post(`${BASE_URL}`, { data: _observerClean(pokemon) })
     })
 }

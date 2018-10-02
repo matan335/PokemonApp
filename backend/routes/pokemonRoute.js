@@ -8,7 +8,7 @@ module.exports = (app) => {
     app.post('/getNewJson', (req, res) => {
         const pokemons = req.body;
         console.log('pokemons got:',pokemons)
-        var found
+        // var found
         // Read the file
         // jf.readFile(file, function (err, obj) {
         //     // Loop through all the objects in the array
