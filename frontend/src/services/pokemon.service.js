@@ -8,7 +8,8 @@ function createPokemonData(pokemons) {
     console.log('sending to back', copy)
     copy.forEach(pokemon => {
         //todo fix payload too large
-        axios.post(`${BASE_URL}`, { data: _observerClean(pokemon) })
+        // axios.post(`${BASE_URL}`, { data: _observerClean(pokemon) })
+        axios.post(`${BASE_URL}`, { data: `got pokemon ${pokemon.name}` })
     })
 }
 
