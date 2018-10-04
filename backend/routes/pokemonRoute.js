@@ -1,4 +1,4 @@
-const pokemonService = require('../services/pokemonService');
+var pokemonService = require('../services/pokemonService.js')
 var fs = require('fs');
 var jf = require('jsonfile')
 var file = 'example.json'
@@ -6,8 +6,9 @@ var file = 'example.json'
 module.exports = (app) => {
     // Example new object
     app.post('/getNewJson', (req, res) => {
-        const pokemons = req.body;
-        console.log('pokemons got:',pokemons)
+        // const pokemons = req.body;
+        var interval = setInterval(pokemonService.query(), 100000);
+        setTimeout(()=> {clearInterval(interval)},2000000)
         // var found
         // Read the file
         // jf.readFile(file, function (err, obj) {
@@ -62,3 +63,4 @@ module.exports = (app) => {
     // });
 
 }
+

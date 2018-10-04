@@ -1,9 +1,9 @@
 <template>
     <section class="pokemon-list">
       <button @click="addPokemonFile">addPokemonFile</button>
-      <div v-for="(pokemon, i) in pokemons" :key="i">
+      <!-- <div v-for="(pokemon, i) in pokemons" :key="i">
         <pokemon-preview :pokemon="pokemon" :loading="loading"></pokemon-preview>
-      </div>
+      </div> -->
     </section>
 </template>
 
@@ -19,16 +19,16 @@ export default {
     };
   },
   created() {
-    service.query()
-      .then(pokemons => {
-        console.log('loaded')
-        this.pokemons = pokemons;
-        setTimeout(() => (this.loading = false), 1500);
-      })
+    // service.query()
+    //   .then(pokemons => {
+    //     console.log('loaded')
+    //     this.pokemons = pokemons;
+    //     setTimeout(() => (this.loading = false), 1500);
+    //   })
   },
   methods: {
     addPokemonFile : function(){
-      service.createPokemonData(this.pokemons)
+      service.createPokemonData()
     }
   },
   components: {
