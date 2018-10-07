@@ -9,18 +9,18 @@ module.exports = {
 
 var count = 0
 function query() {
+    var pokemonList = [];
     axios(`https://pokeapi.co/api/v2/pokemon/`)
         .then(res => res.data)
         .then(resData => {
             resData.results.forEach((pokemonListItem, i) => {
-                axios(pokemonListItem.url)
-                    .then(subRes => subRes.data)
-                    .then(pokemonData => {
-                        if (i === resData.results.length - 1) console.log('this is the last pokemon !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                        _createJSON(pokemonData)
-                    })
-                    .catch(() => console.log('Error', count++))
-            });
+                pokemonList.push(pokemonListItem.name)
+                if (i === resData.results.length - 1) {
+                    console.log('this is the last pokemon !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                    _createPokemonList(pokemonList)
+                }
+
+            })
         })
         .catch(() => console.log('Error', count++))
 }
@@ -43,5 +43,20 @@ function _createJSON(pokemonData) {
 
         }
     });
+
+}
+function _createPokemonList(pokemonList) {
+    console.log('pokemonList.length', pokemonList.length)
+    var fileName = '../frontend/src/jsons/pokemonList.json';
+    var json = {}
+    json.pokemons = pokemonList
+
+    fs.writeFile(fileName, JSON.stringify(json), function (err) {
+        if (err) {
+            console.log('error has ecoured in pokemon', pokemonData.name, err)
+        }
+        else console.log('The "data to append" was appended to file!');
+    })
+
 
 }

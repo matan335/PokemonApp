@@ -6,9 +6,9 @@ var file = 'example.json'
 module.exports = (app) => {
     // Example new object
     app.post('/getNewJson', (req, res) => {
+        // pokemonService.query()
+
         // const pokemons = req.body;
-        var interval = setInterval(pokemonService.query(), 100000);
-        setTimeout(()=> {clearInterval(interval)},2000000)
         // var found
         // Read the file
         // jf.readFile(file, function (err, obj) {

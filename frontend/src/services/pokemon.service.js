@@ -11,8 +11,10 @@ function createPokemonData() {
 }
 
 function query() {
+    console.log('load query')
     return new Promise(resolve => {
         fetch(`https://pokeapi.co/api/v2/pokemon/`)
+            .then(() => console.error('fff'))
             .then(data => data.json()
                 .then(resData => {
                     var pokemons = []
@@ -23,6 +25,12 @@ function query() {
                     });
                     resolve(pokemons)
                 }))
+            .catch(err => {
+                fetch('../jsons/pokemon-zubat.json')
+                    .then(res => res.json())
+                    .then(pokemon => console.log('pokemon:', pokemon))
+
+            })
     })
 }
 
@@ -51,6 +59,7 @@ function getTeam() {
                 }))
     })
 }
+
 
 
 export default {

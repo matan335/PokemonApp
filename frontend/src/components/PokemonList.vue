@@ -27,8 +27,8 @@ export default {
     //   })
   },
   methods: {
-    addPokemonFile : function(){
-      service.createPokemonData()
+    addPokemonFile: function() {
+      service.createPokemonData();
     }
   },
   components: {
