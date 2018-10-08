@@ -4,10 +4,19 @@ var jf = require('jsonfile')
 var path = require('path');
 
 module.exports = {
-    query
+    getList,
+    getByName
+
 }
 
-var count = 0
+function getList() {
+    return require('../../frontend/src/jsons/pokemonList.json')
+}
+
+function getByName(pokemonName) {
+    return require(`../../frontend/src/jsons/pokemon-${pokemonName}.json`)
+}
+
 function query() {
     var pokemonList = [];
     axios(`https://pokeapi.co/api/v2/pokemon/`)
@@ -22,7 +31,7 @@ function query() {
 
             })
         })
-        .catch(() => console.log('Error', count++))
+        .catch(() => console.log('Error'))
 }
 
 function _createJSON(pokemonData) {
@@ -45,13 +54,14 @@ function _createJSON(pokemonData) {
     });
 
 }
+
 function _createPokemonList(pokemonList) {
     console.log('pokemonList.length', pokemonList.length)
-    var fileName = '../frontend/src/jsons/pokemonList.json';
+    var filePath = '../frontend/src/jsons/pokemonList.json';
     var json = {}
     json.pokemons = pokemonList
 
-    fs.writeFile(fileName, JSON.stringify(json), function (err) {
+    fs.writeFile(filePath, JSON.stringify(json), function (err) {
         if (err) {
             console.log('error has ecoured in pokemon', pokemonData.name, err)
         }

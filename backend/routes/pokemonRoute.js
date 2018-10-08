@@ -1,11 +1,14 @@
 var pokemonService = require('../services/pokemonService.js')
-var fs = require('fs');
-var jf = require('jsonfile')
-var file = 'example.json'
 
 module.exports = (app) => {
-    // Example new object
+    // Single pokemon by nmae
+    app.get('/getNewJson/:pokemonName', (req, res) => {
+        const pokemonName = req.params.pokemonName;
+        res.json(pokemonService.getByName(pokemonName))
+    });
+
     app.post('/getNewJson', (req, res) => {
+        return 8;
         // pokemonService.query()
 
         // const pokemons = req.body;
@@ -38,13 +41,7 @@ module.exports = (app) => {
     // List of users
 
 
-    // Single user by ID
-    // app.get('/user/:userId', (req, res) => {
-    //     const userId = req.params.userId;
-    //     return userService.getById(userId)
-    //         .then(user => res.json(user))
-    //         .catch(err => console.log('An error accord while querying user data.', err));
-    // });
+
 
     // // Add user
     // app.post('/user', (req, res) => {

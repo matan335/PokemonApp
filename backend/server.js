@@ -21,9 +21,13 @@ app.use(session({
     }
 }));
 
-// User routes
+// Pokemons routes
 const addPokemonRoutes = require('./routes/pokemonRoute');
 addPokemonRoutes(app);
+
+// list routes
+const addPokemonListRoutes = require('./routes/pokemonListRoute');
+addPokemonListRoutes(app);
 
 
 // Listen to port

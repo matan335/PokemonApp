@@ -24,18 +24,22 @@
 </template>
 
 <script>
+import service from "../services/pokemon.service";
+
 export default {
-  props: ["pokemon", "loading"],
+  props: ["pokemonName"],
   data() {
-    return {};
+    return {
+      pokemon: {},
+      loading: true
+    };
   },
   created() {
-    // console.log(
-    //   "new pokemon " + this.pokemon.name,
-    //   this.pokemon,
-    //   "sprites:",
-    //   this.pokemon.sprites.front_default
-    // );
+    service.getPokemonData(this.pokemonName)
+    .then(pokemon => {
+      this.pokemon = pokemon;
+      setTimeout(() => this.loading = false, 1000);
+    });
   }
 };
 </script>

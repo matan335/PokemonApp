@@ -3,11 +3,49 @@ const BASE_URL = (process.env.NODE_ENV !== 'development')
     ? '/getNewJson'
     : '//localhost:3000/getNewJson';
 
+const BASE_LIST_URL = (process.env.NODE_ENV !== 'development')
+    ? '/list'
+    : '//localhost:3000/list';
+
+
+
+
+export default {
+    createPokemonData,
+    query,
+    getTeam,
+    loadPokemonList,
+    getPages,
+    getPokemonData,
+
+
+}
+
+function getPokemonData(pokemonName) {
+    return axios.get(`${BASE_URL}/${pokemonName}`)
+        .then(res => res.data)
+}
+
 function createPokemonData() {
-    console.log('sending to back')
-
     axios.post(`${BASE_URL}`)
+}
 
+function getPages(pokemonList, pokemonInPage) {
+    var numOfPages = Math.ceil(pokemonList.length / pokemonInPage);
+    var pages = [];
+    for (let i = 0; i < numOfPages; i++) {
+        pages[i] = [];
+        for (let j = 0; j < pokemonInPage; j++) {
+            if (pokemonList[j]) pages[i].push(pokemonList[j]);
+        }
+        pokemonList.splice(0, pokemonInPage);
+    }
+    return pages
+}
+
+function loadPokemonList() {
+    return axios.get(`${BASE_LIST_URL}`)
+        .then(res => res.data)
 }
 
 function query() {
@@ -58,12 +96,4 @@ function getTeam() {
                     resolve(pokemons)
                 }))
     })
-}
-
-
-
-export default {
-    createPokemonData,
-    query,
-    getTeam,
 }
