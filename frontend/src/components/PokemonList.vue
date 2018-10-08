@@ -4,6 +4,12 @@
         <pokemon-page v-if="currentPage === i+1" :page="page" :pageNum=i></pokemon-page>
       </div>
       <div class="nav-bar">
+        <div>
+        <form @submit.prevent="changePage(inputValue)">
+          <input type="number" v-model="inputValue" min="1" :max="getPageLength"/>
+          <button>Go to page</button>
+        </form>
+        </div>
         <button @click="changePage('first')"> 
           <font-awesome-icon icon="fast-backward"/>
         </button>
@@ -30,33 +36,47 @@ export default {
     return {
       pages: [],
       pokemonInPage: 5,
-      currentPage: 1
+      currentPage: 1,
+      inputValue: 1
     };
   },
   created() {
     service.loadPokemonList().then(pokemonList => {
       this.pages = this.getPages(pokemonList);
+      console.log("this.pages.length");
+    });
+    service.query().then(pokemonList => {
+      console.log("pokemonList", pokemonList);
     });
   },
   methods: {
     getPages: function(pokemonList) {
       return service.getPages(pokemonList, this.pokemonInPage);
     },
-    changePage: function(dir) {
-      switch (dir) {
-        case "first":
-          this.currentPage = 1;
-          break;
-        case "previus":
-          if (this.currentPage > 1) this.currentPage--;
-          break;
-        case "next":
-          if (this.currentPage < this.pages.length) this.currentPage++;
-          break;
-        case "last":
-          this.currentPage = this.pages.length;
-          break;
+    changePage: function(value) {
+      if (!isNaN(+value)) {
+        this.currentPage = +value;
+      } else {
+        switch (value) {
+          case "first":
+            this.currentPage = 1;
+            break;
+          case "previus":
+            if (this.currentPage > 1) this.currentPage--;
+            break;
+          case "next":
+            if (this.currentPage < this.pages.length) this.currentPage++;
+            break;
+          case "last":
+            this.currentPage = this.pages.length;
+            break;
+        }
       }
+    }
+  },
+  computed: {
+    getPageLength: function() {
+      return this.pages.length;
     }
   },
   components: {
