@@ -1,5 +1,6 @@
 <template>
-    <section class="pokemon-preview">
+    <section class="pokemon-preview" @mouseover="showButton" 
+    @mouseout="hideButton">
         <div v-if="loading">
             <div class="sk-circle">
                 <div class="sk-circle1 sk-child"></div>
@@ -19,6 +20,8 @@
         <div v-else-if="pokemon.name">
           <img :src="pokemon.sprites.front_default" />
           <div>{{pokemon.name}}</div>
+          <button class="btn" v-show="hover"
+          @click="addToTeam">add to team</button>
         </div>
     </section>
 </template>
@@ -27,19 +30,37 @@
 import service from "../services/pokemon.service";
 
 export default {
-  props: ["pokemonName"],
+  props: ["pokemonName", "teamMember"],
   data() {
     return {
       pokemon: {},
-      loading: true
+      loading: true,
+      hover: false
     };
   },
   created() {
-    service.getPokemonData(this.pokemonName)
-    .then(pokemon => {
+    if (this.teamMember){
+      this.pokemon = this.teamMember;
+      setTimeout(() => (this.loading = false), 1000);
+    }
+    else service.getPokemonData(this.pokemonName).then(pokemon => {
       this.pokemon = pokemon;
-      setTimeout(() => this.loading = false, 1000);
+      setTimeout(() => (this.loading = false), 1000);
     });
+  },
+  methods: {
+    showButton: function() {
+      this.hover = true;
+    },
+    hideButton: function() {
+      this.hover = false;
+    },
+    addToTeam: function() {
+      this.$store.commit({
+        type: "addToTeam",
+        pokemon: this.pokemon
+      });
+    }
   }
 };
 </script>
@@ -54,6 +75,9 @@ export default {
   width: 90vw;
   min-height: 80px;
   margin: 6px auto;
+}
+.hidden {
+  display: none;
 }
 .sk-circle {
   margin: 25px auto;

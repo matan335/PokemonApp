@@ -1,7 +1,7 @@
 <template>
     <section class="pokemon-team">
-      <div v-for="(pokemon, i) in pokemons" :key="i">
-        <pokemon-preview :pokemon="pokemon" :loading="loading"></pokemon-preview>
+      <div v-for="(teamMember, i) in getTeam" :key="i">
+        <pokemon-preview :teamMember="teamMember"></pokemon-preview>
       </div>
     </section>
 </template>
@@ -13,16 +13,12 @@ import pokemonPreview from "@/components/PokemonPreview";
 export default {
   data() {
     return {
-      pokemons: [],
-      loading: true
     };
   },
-  created() {
-    service.getTeam().then(pokemons => {
-      this.pokemons = pokemons;
-      console.log("avner wanted", this.pokemons);
-      setTimeout(() => (this.loading = false), 1500);
-    });
+  computed: {
+    getTeam: function() {
+      return this.$store.getters.team;
+    }
   },
   components: {
     pokemonPreview

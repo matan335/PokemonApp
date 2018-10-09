@@ -45,9 +45,6 @@ export default {
       this.pages = this.getPages(pokemonList);
       console.log("this.pages.length");
     });
-    service.query().then(pokemonList => {
-      console.log("pokemonList", pokemonList);
-    });
   },
   methods: {
     getPages: function(pokemonList) {
