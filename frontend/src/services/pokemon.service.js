@@ -20,7 +20,7 @@ export default {
 
 
 }
-
+console.log('lolz')
 function getPokemonData(pokemonName) {
     return axios.get(`${BASE_URL}/${pokemonName}`)
         .then(res => res.data)
