@@ -1,8 +1,10 @@
 <template>
     <section class="pokemon-list">
+
       <div v-for="(page, i) in pages" :key="i">
         <pokemon-page v-if="currentPage === i+1" :page="page" :pageNum=i></pokemon-page>
       </div>
+
       <div class="nav-bar">
         <div>
         <form @submit.prevent="changePage(inputValue)">
@@ -23,7 +25,7 @@
           <font-awesome-icon icon="fast-forward"/>
         </button>
       </div>
-      <span>Current Page: {{currentPage}}</span>
+      <span class="page-num">Current Page: {{currentPage}}</span>
     </section>
 </template>
 
@@ -87,5 +89,8 @@ export default {
   background-color: black;
   padding-top: 6px;
   height: 100%;
+}
+.page-num {
+  color:white;
 }
 </style>

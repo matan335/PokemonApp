@@ -37,9 +37,6 @@ function query() {
 function _createJSON(pokemonData) {
     var fileName = './jsons/pokemon-' + pokemonData.name + '.json'
     fs.stat(fileName, function (err, stat) {
-        // if (err == null) {
-        // file exist
-        // } else if (err.code == 'ENOENT') {
         if (err && err.code == 'ENOENT') {
             // file does not exist
             console.log('add new pokemon', pokemonData.name)

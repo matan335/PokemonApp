@@ -60,6 +60,7 @@ export default {
         type: "addToTeam",
         pokemon: this.pokemon
       });
+      this.$router.push('/team')
     }
   }
 };
